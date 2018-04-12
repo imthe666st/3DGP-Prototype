@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Coinflip.Code
+namespace Coinflip.Game
 {
 	/// <summary>
 	/// Improves kayboard controls with new functions.

@@ -42,8 +42,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Code\Coinflip.cs" />
-    <Compile Include="Code\KeyboardManager.cs" />
+    <Compile Include="Game\Coinflip.cs" />
+    <Compile Include="Game\GameObject.cs" />
+    <Compile Include="Game\GameScene.cs" />
+    <Compile Include="Game\KeyboardManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
