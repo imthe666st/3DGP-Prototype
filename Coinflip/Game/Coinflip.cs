@@ -2,12 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Coinflip.Code
+namespace Coinflip.Game
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Coinflip : Game
+    public class Coinflip : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;

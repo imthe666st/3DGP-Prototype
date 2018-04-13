@@ -13,7 +13,7 @@ namespace Coinflip
         [STAThread]
         static void Main()
         {
-            using (var game = new Code.Coinflip())
+            using (var game = new Game.Coinflip())
                 game.Run();
         }
     }
