@@ -43,9 +43,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game\Coinflip.cs" />
-    <Compile Include="Game\GameObject.cs" />
-    <Compile Include="Game\GameScene.cs" />
-    <Compile Include="Game\KeyboardManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
