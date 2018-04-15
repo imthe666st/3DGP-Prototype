@@ -15,8 +15,6 @@ namespace Coinflip.Game.GameScenes
 	{
 		public MainScene() : base("main-scene")
 		{
-			this.SetCameraPosition(new Vector3(-1, 0, 0));
-			this.SetAbsoluteCameraTarget(new Vector3(0, 0, 0));
 		}
 
 		protected override void AddGameObjects()

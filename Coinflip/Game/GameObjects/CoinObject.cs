@@ -79,7 +79,7 @@ namespace Coinflip.Game.GameObjects
 				float modRotation = this.Rotation.X;
 				while (modRotation > MathHelper.TwoPi) modRotation -= MathHelper.TwoPi;
 
-				var tolerance = 0.1f;
+				var tolerance = 0.025f;
 
 				Console.WriteLine($"{modRotation}");
 				if (modRotation > MathHelper.PiOver2 - tolerance && modRotation < MathHelper.PiOver2 + tolerance)
@@ -118,12 +118,12 @@ namespace Coinflip.Game.GameObjects
 
 			//this.SetPosition(new Vector3(0, 0, 0.1f));
 			scene.SetAbsoluteCameraTarget(new Vector3(this.GetHierarchyPosition().X, this.GetHierarchyPosition().Z, this.GetHierarchyPosition().Y));
-			scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X, (float) Math.Sqrt(this.GetHierarchyPosition().Y), this.GetHierarchyPosition().Z));
+			scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X - 1.15f, (float) Math.Sqrt(Math.Abs(this.GetHierarchyPosition().Y)) + 0.55f, this.GetHierarchyPosition().Z));
 
 			this.PassedThrowTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 			//scene.SetAbsoluteCameraTarget(this.Position);
-			scene.SetCameraPosition(this.Position - new Vector3(-2, 0, 0));
+			//scene.SetCameraPosition(this.Position - new Vector3(-2, 0, 0));
 
 
 		}

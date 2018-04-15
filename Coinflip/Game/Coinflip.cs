@@ -14,6 +14,10 @@ namespace Coinflip.Game
         
         public Coinflip()
         {
+
+	        this.IsFixedTimeStep = false;
+	        GraphicsDeviceManager.SynchronizeWithVerticalRetrace = false;
+
         }
 
         /// <summary>
