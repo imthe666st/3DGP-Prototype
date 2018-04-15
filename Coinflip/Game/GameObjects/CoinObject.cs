@@ -41,6 +41,8 @@ namespace Coinflip.Game.GameObjects
 
 				this.SetPosition(this.StartVector);
 
+				this.PassedThrowTime = 0.0f;
+
 				this.IsThrown = false;
 				this.IsFinished = false;
 			}
@@ -54,12 +56,14 @@ namespace Coinflip.Game.GameObjects
 
 				this.StartHeight = this.GetHierarchyPosition().Z;
 
+				this.StartVector = this.GetHierarchyPosition();
+
 				// generate a random
 				var random = new Random();
 
 				// set the rotation speed and z rotation
 
-				this.RotationSpeed = ((float) random.NextDouble()) * MathHelper.TwoPi;
+				this.RotationSpeed = ((float) random.NextDouble()) * MathHelper.TwoPi * 100f;
 				this.AddRotation(new Vector3(0, 0, ((float) random.NextDouble()) * MathHelper.TwoPi));
 
 			}
@@ -92,7 +96,7 @@ namespace Coinflip.Game.GameObjects
 
 			this.AddPosition(new Vector3(0, 0, deltaHeight));
 
-			this.AddRotation(new Vector3(this.RotationSpeed, 0, 0));
+			this.AddRotation(new Vector3(this.RotationSpeed, 0, 0) * (float) gameTime.ElapsedGameTime.TotalSeconds);
 
 			
 
