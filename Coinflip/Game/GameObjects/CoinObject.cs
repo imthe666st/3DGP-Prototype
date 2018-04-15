@@ -78,15 +78,29 @@ namespace Coinflip.Game.GameObjects
 
 				float modRotation = this.Rotation.X;
 				while (modRotation > MathHelper.TwoPi) modRotation -= MathHelper.TwoPi;
-				if (modRotation < MathHelper.PiOver2 || modRotation > 3f * MathHelper.PiOver2)
+
+				var tolerance = 0.1f;
+
+				Console.WriteLine($"{modRotation}");
+				if (modRotation > MathHelper.PiOver2 - tolerance && modRotation < MathHelper.PiOver2 + tolerance)
 				{
-					//this.SetPosition(new Vector3(0, 1, this.StartHeight));
-					this.SetRotation(new Vector3(0, 0, this.Rotation.Z));
+					this.SetRotation(new Vector3(MathHelper.PiOver2, 0, this.Rotation.Z));
+					this.AddPosition(new Vector3(0, 0, this.Scale / 2f));
+				}
+				else if (modRotation > 3 * MathHelper.PiOver2 - tolerance && modRotation < 3 * MathHelper.PiOver2 + tolerance)
+				{
+					this.SetRotation(new Vector3(3 * MathHelper.PiOver2, 0, this.Rotation.Z));
+					this.AddPosition(new Vector3(0, 0, this.Scale / 2f));
+				}
+				else if (modRotation > MathHelper.PiOver2 + tolerance && modRotation < 3 * MathHelper.PiOver2 - tolerance)
+				{
+					this.SetRotation(new Vector3(MathHelper.Pi, 0, this.Rotation.Z));
+					this.AddPosition(new Vector3(0, 0, 0));
 				}
 				else
 				{
-					//this.SetPosition(new Vector3(0, -1, this.StartHeight));
-					this.SetRotation(new Vector3(MathHelper.Pi, 0, this.Rotation.Z));
+					this.SetRotation(new Vector3(0, 0, this.Rotation.Z));
+					this.AddPosition(new Vector3(0, 0, 0));
 				}
 
 				this.IsFinished = true;
@@ -96,6 +110,8 @@ namespace Coinflip.Game.GameObjects
 
 			this.AddPosition(new Vector3(0, 0, deltaHeight));
 
+
+			//this.SetRotation(new Vector3(MathHelper.PiOver2, 0, 0));
 			this.AddRotation(new Vector3(this.RotationSpeed, 0, 0) * (float) gameTime.ElapsedGameTime.TotalSeconds);
 
 			
