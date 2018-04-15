@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Singularity.Code;
 
 namespace Coinflip.Game.GameObjects
@@ -13,6 +14,8 @@ namespace Coinflip.Game.GameObjects
 	{
 
 		private Boolean IsThrown = false;
+		private Boolean IsFinished = false;
+
 		private float PassedThrowTime = 0.0f;
 		private float RotationSpeed = -1.0f;
 
@@ -29,6 +32,19 @@ namespace Coinflip.Game.GameObjects
 
 		public override void Update(GameScene scene, GameTime gameTime)
 		{
+			if (IsFinished)
+			{
+				if (!KeyboardManager.IsKeyDown(Keys.R))
+					return;
+
+				// reset.
+
+				this.SetPosition(this.StartVector);
+
+				this.IsThrown = false;
+				this.IsFinished = false;
+			}
+
 			if (!IsThrown)
 			{
 				// this is the first frame of the scene
@@ -56,7 +72,20 @@ namespace Coinflip.Game.GameObjects
 				this.SetPosition(new Vector3(this.StartVector.X, this.StartVector.Y, this.StartHeight));
 				// end stuff
 
+				float modRotation = this.Rotation.X;
+				while (modRotation > MathHelper.TwoPi) modRotation -= MathHelper.TwoPi;
+				if (modRotation < MathHelper.PiOver2 || modRotation > 3f * MathHelper.PiOver2)
+				{
+					//this.SetPosition(new Vector3(0, 1, this.StartHeight));
+					this.SetRotation(new Vector3(0, 0, this.Rotation.Z));
+				}
+				else
+				{
+					//this.SetPosition(new Vector3(0, -1, this.StartHeight));
+					this.SetRotation(new Vector3(MathHelper.Pi, 0, this.Rotation.Z));
+				}
 
+				this.IsFinished = true;
 
 				return;
 			}
