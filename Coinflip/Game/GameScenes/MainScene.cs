@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Coinflip.Game.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Singularity.Code;
@@ -14,37 +15,30 @@ namespace Coinflip.Game.GameScenes
 	{
 		public MainScene() : base("main-scene")
 		{
-			this.SetCameraPosition(new Vector3(0, 0, 0));
+			this.SetCameraPosition(new Vector3(-1, 0, 0));
 			this.SetAbsoluteCameraTarget(new Vector3(0, 0, 0));
 		}
 
 		protected override void AddGameObjects()
 		{
-			AddObject(new BasicCamera(this));
+			//AddObject(new BasicCamera(this));
+			
+			AddObject(
+				new CoinObject()
+					.SetScale(0.2f)
+					.SetPosition(new Vector3(0, 0, -0.20f))
+					.SetRotation(new Vector3(0, 0, -0.5f))
+					.SetDebugName("coin")
+			);
 
-			//AddObject(
-			//	new ModelObject("plane")
-			//		.SetPosition(new Vector3(0, -5, 0))
-			//		.SetScale(5.0f)
-			//);
 
 			AddObject(
-				new ModelObject("test")
-					.SetScale(1f)
-					.SetPosition(new Vector3(0, 0, -1))
+				new ModelObject("coin")
+					.SetPosition(new Vector3(0, 0, -0.25f))
 					.SetRotation(new Vector3(0, 0, 0))
-					.SetDebugName("coin")
-					.AddScript(
-						(scene, obj, gameTime) =>
-						{
-							//obj.AddRotation(new Vector3(2, 3, 5) * (float) gameTime.TotalGameTime.TotalSeconds);
-							//obj.SetPosition(new Vector3(0, 0, 1) * (float) Math.Sin(gameTime.TotalGameTime.TotalSeconds));
-							
-							//scene.SetAbsoluteCameraTarget(obj.GetHierarchyPosition());
-							Console.WriteLine($"Camera Position: {scene.CameraPosition} - Camera Target: {scene.CameraTarget}");
-						}
-					)
+					.SetDebugName("table")
 			);
+
 		}
 
 		public override void AddLightningToEffect(BasicEffect effect)
