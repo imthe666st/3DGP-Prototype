@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Coinflip.Game.GameScenes;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Singularity.Code;
@@ -13,7 +14,6 @@ namespace Coinflip.Game
         
         public Coinflip()
         {
-
         }
 
         /// <summary>
@@ -24,9 +24,12 @@ namespace Coinflip.Game
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
 
-            base.Initialize();
+	        SceneManager.RegisterScene(new MainScene());
+
+	        SceneManager.AddSceneToStack("main-scene");
+
+			base.Initialize();
         }
 
         /// <summary>
