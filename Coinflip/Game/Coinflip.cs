@@ -29,9 +29,11 @@ namespace Coinflip.Game
         protected override void Initialize()
         {
 
-	        SceneManager.RegisterScene(new MainScene());
+	        SceneManager.RegisterScene(new MainScene()); // Key is "main-scene"
 
-	        SceneManager.AddSceneToStack("main-scene");
+			SceneManager.RegisterScene(new RenderScene()); // used for testing only! Key is "render-scene"
+
+			SceneManager.AddSceneToStack("main-scene");
 
 			base.Initialize();
         }

@@ -6,36 +6,27 @@ using System.Threading.Tasks;
 using Coinflip.Game.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Singularity.Code;
 using Singularity.Code.GameObjects;
 
 namespace Coinflip.Game.GameScenes
 {
-	public class MainScene : GameScene
+	public class RenderScene : GameScene
 	{
-		public MainScene() : base("main-scene")
+		public RenderScene() : base("render-scene")
 		{
 		}
 
 		protected override void AddGameObjects()
 		{
-			//AddObject(new BasicCamera(this).AddScript((a, b, c) => ((BasicCamera)b).Set3DEnabled(true)));
-			
-			AddObject(
-				new CoinObject()
-					.SetScale(0.1f)
-					.SetPosition(new Vector3(0, 0, -0.20f))
-					.SetRotation(new Vector3(0, 0, -0.5f))
-					.SetDebugName("coin")
-			);
+			// add a camera
+			AddObject(new BasicCamera(this).AddScript((scene, obj, gameTime) =>
+			{
+				if (KeyboardManager.IsKeyDown(Keys.F1)) ((BasicCamera) obj).Set3DEnabled(!((BasicCamera)obj).Is3DEnabled);
+			}));
 
-
-			AddObject(
-				new ModelObject("table")
-					.SetPosition(new Vector3(0, 0, -0.25f))
-					.SetRotation(new Vector3(0, 0, 0))
-					.SetDebugName("table")
-			);
+			AddObject(new ModelObject("dae_coin2").SetScale(10.0f));
 
 		}
 

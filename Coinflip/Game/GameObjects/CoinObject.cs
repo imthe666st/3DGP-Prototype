@@ -27,7 +27,7 @@ namespace Coinflip.Game.GameObjects
 
 		public CoinObject() : base()
 		{
-			this.SetModel(ModelManager.GetModel("coin"));
+			this.SetModel(ModelManager.GetModel("dae_coin2"));
 		}
 
 		public override void Update(GameScene scene, GameTime gameTime)
@@ -117,6 +117,7 @@ namespace Coinflip.Game.GameObjects
 			
 
 			//this.SetPosition(new Vector3(0, 0, 0.1f));
+			//scene.SetAbsoluteCamera(this.StartVector + new Vector3(1, 1, 1), this.StartVector);
 			scene.SetAbsoluteCameraTarget(new Vector3(this.GetHierarchyPosition().X, this.GetHierarchyPosition().Z, this.GetHierarchyPosition().Y));
 			scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X - 1.15f, (float) Math.Sqrt(Math.Abs(this.GetHierarchyPosition().Y)) + 0.55f, this.GetHierarchyPosition().Z));
 

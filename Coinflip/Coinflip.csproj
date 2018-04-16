@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Game\Coinflip.cs" />
     <Compile Include="Game\GameObjects\CoinObject.cs" />
+    <Compile Include="Game\GameScenes\RenderScene.cs" />
     <Compile Include="Game\GameScenes\MainScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
