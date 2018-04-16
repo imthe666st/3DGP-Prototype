@@ -14,7 +14,8 @@ namespace Coinflip.Game.GameObjects
 	{
 
 		private Boolean IsThrown = false;
-		private Boolean IsFinished = false;
+		private Boolean IsFinished = true;
+		private Boolean IsInitialized = false;
 
 		private float PassedThrowTime = 0.0f;
 		private float RotationSpeed = -1.0f;
@@ -32,6 +33,18 @@ namespace Coinflip.Game.GameObjects
 
 		public override void Update(GameScene scene, GameTime gameTime)
 		{
+			scene.SetAbsoluteCameraTarget(new Vector3(this.GetHierarchyPosition().X, this.GetHierarchyPosition().Z, this.GetHierarchyPosition().Y));
+			scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X - 1.15f, (float)Math.Sqrt(Math.Abs(this.GetHierarchyPosition().Y)) + 0.55f, this.GetHierarchyPosition().Z));
+
+			if (!IsInitialized)
+			{
+				IsInitialized = true;
+
+				this.StartHeight = this.GetHierarchyPosition().Z;
+
+				this.StartVector = this.GetHierarchyPosition();
+			}
+
 			if (IsFinished)
 			{
 				if (!KeyboardManager.IsKeyDown(Keys.R))
@@ -63,7 +76,7 @@ namespace Coinflip.Game.GameObjects
 
 				// set the rotation speed and z rotation
 
-				this.RotationSpeed = ((float) random.NextDouble()) * MathHelper.TwoPi * 100f;
+				this.RotationSpeed = ((float) random.NextDouble()) * MathHelper.TwoPi * 7.5f;
 				this.AddRotation(new Vector3(0, 0, ((float) random.NextDouble()) * MathHelper.TwoPi));
 
 			}
@@ -118,9 +131,7 @@ namespace Coinflip.Game.GameObjects
 
 			//this.SetPosition(new Vector3(0, 0, 0.1f));
 			//scene.SetAbsoluteCamera(this.StartVector + new Vector3(1, 1, 1), this.StartVector);
-			scene.SetAbsoluteCameraTarget(new Vector3(this.GetHierarchyPosition().X, this.GetHierarchyPosition().Z, this.GetHierarchyPosition().Y));
-			scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X - 1.15f, (float) Math.Sqrt(Math.Abs(this.GetHierarchyPosition().Y)) + 0.55f, this.GetHierarchyPosition().Z));
-
+			
 			this.PassedThrowTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 			//scene.SetAbsoluteCameraTarget(this.Position);

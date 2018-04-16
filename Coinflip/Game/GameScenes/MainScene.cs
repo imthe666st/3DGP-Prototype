@@ -31,8 +31,8 @@ namespace Coinflip.Game.GameScenes
 
 
 			AddObject(
-				new ModelObject("table")
-					.SetPosition(new Vector3(0, 0, -0.25f))
+				new ModelObject("dae_table")
+					.SetPosition(new Vector3(0, 0, -30.00f)) // the scale of the model seems to be wrong. No idea what's causing that. 
 					.SetRotation(new Vector3(0, 0, 0))
 					.SetDebugName("table")
 			);
