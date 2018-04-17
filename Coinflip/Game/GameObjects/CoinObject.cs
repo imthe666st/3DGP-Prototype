@@ -33,8 +33,8 @@ namespace Coinflip.Game.GameObjects
 
 		public override void Update(GameScene scene, GameTime gameTime)
 		{
-			scene.SetAbsoluteCameraTarget(new Vector3(this.GetHierarchyPosition().X, this.GetHierarchyPosition().Z, this.GetHierarchyPosition().Y));
-			scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X - 1.15f, (float)Math.Sqrt(Math.Abs(this.GetHierarchyPosition().Y)) + 0.55f, this.GetHierarchyPosition().Z));
+			scene.SetAbsoluteCameraTarget(this.GetHierarchyPosition());
+			scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X - 1 - (float)Math.Sqrt(this.GetHierarchyPosition().Z), 0, (float)Math.Sqrt(2 * this.GetHierarchyPosition().Z + 0.7)));
 
 			if (!IsInitialized)
 			{
@@ -133,10 +133,7 @@ namespace Coinflip.Game.GameObjects
 			//scene.SetAbsoluteCamera(this.StartVector + new Vector3(1, 1, 1), this.StartVector);
 			
 			this.PassedThrowTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-			//scene.SetAbsoluteCameraTarget(this.Position);
-			//scene.SetCameraPosition(this.Position - new Vector3(-2, 0, 0));
-
+			
 
 		}
 	}
