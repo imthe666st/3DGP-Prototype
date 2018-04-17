@@ -34,7 +34,8 @@ namespace Coinflip.Game.GameObjects
 		public override void Update(GameScene scene, GameTime gameTime)
 		{
 			scene.SetAbsoluteCameraTarget(this.GetHierarchyPosition());
-			scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X - 1 - (float)Math.Sqrt(this.GetHierarchyPosition().Z), 0, (float)Math.Sqrt(2 * this.GetHierarchyPosition().Z + 0.7)));
+			scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X - 1.1f - (float)Math.Sqrt(this.GetHierarchyPosition().Z), 0, (float)Math.Sqrt(2 * this.GetHierarchyPosition().Z + 0.7) + 0.25f));
+			//scene.SetCameraPosition(new Vector3(this.GetHierarchyPosition().X - 1 - (float)Math.Sqrt(this.GetHierarchyPosition().Z), 0, this.GetHierarchyPosition().Z));
 
 			if (!IsInitialized)
 			{
@@ -92,7 +93,7 @@ namespace Coinflip.Game.GameObjects
 				float modRotation = this.Rotation.X;
 				while (modRotation > MathHelper.TwoPi) modRotation -= MathHelper.TwoPi;
 
-				var tolerance = 0.025f;
+				var tolerance = MathHelper.ToRadians(5f);
 
 				Console.WriteLine($"{modRotation}");
 				if (modRotation > MathHelper.PiOver2 - tolerance && modRotation < MathHelper.PiOver2 + tolerance)

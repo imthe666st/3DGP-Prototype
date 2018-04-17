@@ -24,7 +24,7 @@ namespace Coinflip.Game.GameScenes
 			AddObject(
 				new CoinObject()
 					.SetScale(0.1f)
-					.SetPosition(new Vector3(0, 0, 0.15f))
+					.SetPosition(new Vector3(0, 0, 0.12f))
 					.SetRotation(new Vector3(0, 0, -0.5f))
 					.SetDebugName("coin")
 			);
@@ -32,6 +32,7 @@ namespace Coinflip.Game.GameScenes
 
 			AddObject(
 				new ModelObject("dae_table")
+					.SetScale(0.75f)
 					.SetPosition(new Vector3(0, 0, 0)) // the scale of the model seems to be wrong. No idea what's causing that. 
 					.SetRotation(new Vector3(0, 0, 0))
 					.SetDebugName("table")
@@ -42,11 +43,11 @@ namespace Coinflip.Game.GameScenes
 		public override void AddLightningToEffect(BasicEffect effect)
 		{
 			//effect.TextureEnabled = true;
-
+			effect.LightingEnabled = true;
 			effect.DirectionalLight0.DiffuseColor = new Vector3(0.2f, 0.2f, 0.2f); // some diffuse light
-			effect.DirectionalLight0.Direction = new Vector3(1, 0, 1);  // 
+			effect.DirectionalLight0.Direction = new Vector3(1, 0, -2);  // 
 			effect.DirectionalLight0.SpecularColor = new Vector3(0.05f, 0.05f, 0.05f); // a tad of specularity]
-			effect.AmbientLightColor = new Vector3(0.35f, 0.35f, 0.415f); // Add some overall ambient light.
+			effect.AmbientLightColor = new Vector3(0.55f, 0.55f, 0.715f); // Add some overall ambient light.
 		}
 	}
 }
